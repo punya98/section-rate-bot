@@ -1,1 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jindal Hollow Section Rate Calculator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f8f9fa;
+      padding: 20px;
+      color: #333;
+    }
+    h1 {
+      color: #24364e;
+    }
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+    select, input {
+      padding: 8px;
+      width: 100%;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    .result {
+      background: #fff;
+      padding: 15px;
+      border-radius: 5px;
+      margin-top: 20px;
+      box-shadow: 0 0 5px rgba(0,0,0,0.1);
+    }
+    .whatsapp {
+      margin-top: 20px;
+      display: inline-block;
+      background-color: #25D366;
+      color: white;
+      padding: 10px 20px;
+      text-decoration: none;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
 
+<h1>Jindal Hollow Section Rate Calculator</h1>
+
+<label for="size">Select Size:</label>
+<select id="size" onchange="populateThickness()">
+  <option value="">-- Select Size --</option>
+  <option value="25X25">25X25</option>
+  <option value="32X32">32X32</option>
+  <option value="38X38">38X38</option>
+  <option value="50X25">50X25</option>
+  <option value="50X50">50X50</option>
+  <option value="75X25">75X25</option>
+  <option value="75X50">75X50</option>
+  <option value="100X50">100X50</option>
+  <option value="100X100">100X100</option>
+  <option value="120X60">120X60</option>
+  <option value="150X50">150X50</option>
+  <option value="150X75">150X75</option>
+  <option value="160X80">160X80</option>
+  <option value="200X100">200X100</option>
+  <option value="220X220">220X220</option>
+</select>
+
+<label for="thickness">Select Thickness:</label>
+<select id="thickness" onchange="showRate()">
+  <option value="">-- Select Thickness --</option>
+</select>
+
+<label for="quantity">Number of Pipes:</label>
+<input type="number" id="quantity" value="1" onchange="calculate()" />
+
+<div class="result">
+  <p><strong>Rate per Tonne:</strong> ₹<span id="rate">-</span></p>
+  <p><strong>Approx Weight:</strong> <span id="weight">-</span> kg</p>
+  <p><strong>Total Cost:</strong> ₹<span id="total">-</span></p>
+</div>
+
+<a href="#" class="whatsapp" id="waLink" target="_blank">Send via WhatsApp</a>
+
+<script>
+const data = {
+  "25X25": {
+    "1.60MM": { rate: 55000, weight: 7.15 },
+    "1.84MM": { rate: 55000, weight: 8.16 },
+    "2.00MM": { rate: 55000, weight: 8.74 }
+  },
+  "32X32": {
+    "1.60MM": { rate: 55000, weight: 9.27 },
+    "1.84MM": { rate: 55000, weight: 10.6 }
+  },
+  "38X38": {
+    "1.60MM": { rate: 55000, weight: 11.2 }
+  },
+  "50X25": {
+    "1.60MM": { rate: 55000, weight: 9.84 }
+  },
+  "50X50": {
+    "1.60MM": { rate: 55000, weight: 13.16 },
+    "1.84MM": { rate: 55000, weight: 15.2 },
+    "2.00MM": { rate: 55000, weight: 16.2 },
+    "2.65MM": { rate: 55000, weight: 20.9 },
+    "3.00MM": { rate: 55000, weight: 23.2 }
+  },
+  "75X25": {
+    "1.60MM": { rate: 55000, weight: 11.2 }
+  },
+  "75X50": {
+    "2.00MM": { rate: 55000, weight: 21.5 }
+  },
+  "100X50": {
+    "3.00MM": { rate: 55000, weight: 34.2 }
+  },
+  "100X100": {
+    "3.00MM": { rate: 55000, weight: 47.4 }
+  },
+  "120X60": {
+    "3.00MM": { rate: 55000, weight: 45.6 }
+  },
+  "150X50": {
+    "3.00MM": { rate: 55000, weight: 49.8 }
+  },
+  "150X75": {
+    "3.00MM": { rate: 55000, weight: 59.3 }
+  },
+  "160X80": {
+    "3.00MM": { rate: 55000, weight: 63.4 }
+  },
+  "200X100": {
+    "3.00MM": { rate: 55000, weight: 82.5 }
+  },
+  "220X220": {
+    "3.00MM": { rate: 55000, weight: 126.5 }
+  }
+};
+
+function populateThickness() {
+  const size = document.getElementById("size").value;
+  const thicknessEl = document.getElementById("thickness");
+  thicknessEl.innerHTML = '<option value="">-- Select Thickness --</option>';
+  if (data[size]) {
+    for (let thickness in data[size]) {
+      thicknessEl.innerHTML += `<option value="${thickness}">${thickness}</option>`;
+    }
+  }
+  document.getElementById("rate").innerText = '-';
+  document.getElementById("weight").innerText = '-';
+  document.getElementById("total").innerText = '-';
+}
+
+function showRate() {
+  calculate();
+}
+
+function calculate() {
+  const size = document.getElementById("size").value;
+  const thickness = document.getElementById("thickness").value;
+  const qty = parseInt(document.getElementById("quantity").value) || 0;
+
+  if (data[size] && data[size][thickness]) {
+    const rate = data[size][thickness].rate;
+    const weight = data[size][thickness].weight * qty;
+    const total = (weight * rate) / 1000;
+
+    document.getElementById("rate").innerText = rate.toLocaleString('en-IN');
+    document.getElementById("weight").innerText = weight.toFixed(2);
+    document.getElementById("total").innerText = total.toLocaleString('en-IN', { maximumFractionDigits: 2 });
+
+    const waText = `Hi, I'm looking for ${qty} pipe(s) of ${size} ${thickness}.\nTotal Weight: ${weight.toFixed(2)} kg\nTotal Amount: ₹${total.toFixed(2)}`;
+    document.getElementById("waLink").href = `https://wa.me/919999889008?text=${encodeURIComponent(waText)}`;
+  }
+}
+</script>
+
+</body>
+</html>
