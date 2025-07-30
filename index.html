@@ -98,249 +98,236 @@
 
 <script>
 const data = {
- "25X25": {
-    "1.60MM": { rate: 55000, weight: 7.15 },
-    "1.84MM": { rate: 55000, weight: 8.16 },
-    "2.00MM": { rate: 54500, weight: 9 },
-    "2.35MM": { rate: 54000, weight: 10.25 },
-    "2.50MM": { rate: 54000, weight: 11 },
-    "2.70MM": { rate: 54000, weight: 12.5 },
-    "2.90MM": { rate: 54000, weight: 13 },
-    "3.25MM": { rate: 54000, weight: 14.12 }
-   
-  },
-  "32X32": {
-    "1.60MM": { rate: 55000, weight: 9.27 },
-    "1.84MM": { rate: 55000, weight: 11 },
-    "2.00MM": { rate: 54500, weight: 11.45 },
-    "2.50MM": { rate: 54000, weight: 14.6 },
-    "2.90MM": { rate: 54000, weight: 16.5 }
-  },
- "38X38": {
-    "1.60MM": { rate: 54000, weight: 11.07 },
-    "1.84MM": { rate: 54000, weight: 12.67 },
-    "2.00MM": { rate: 54500, weight: 14 },
-    "2.50MM": { rate: 54000, weight: 17.5 },
-    "2.90MM": { rate: 54000, weight: 20.5 },
-    "3.25MM": { rate: 54000, weight: 21.9 },
-    "3.60MM": { rate: 54000, weight: 23.85 },
-    "4.05MM": { rate: 54000, weight: 27.3 }
-  },
- "40X40": {
-    "1.60MM": { rate: 55000, weight: 12 },
-    "1.84MM": { rate: 55000, weight: 13.5 },
-    "2.00MM": { rate: 54500, weight: 15 },
-    "2.50MM": { rate: 54000, weight: 18.5 },
-    "2.90MM": { rate: 54000, weight: 21.5 },
-    "3.25MM": { rate: 54000, weight: 23.5 },
-    "3.60MM": { rate: 54000, weight: 25.5 },
-    "4.05MM": { rate: 54000, weight: 28.92 }
-  },
-  "50X50": {
-    "1.60MM": { rate: 55000, weight: 15.5 },
-    "1.84MM": { rate: 55000, weight: 16.8 },
-    "2.00MM": { rate: 54500, weight: 18.5 },
-    "2.50MM": { rate: 54000, weight: 22.37 },
-    "2.90MM": { rate: 54000, weight: 25.8 },
-    "3.25MM": { rate: 54000, weight: 28.74 },
-    "3.60MM": { rate: 54000, weight: 31.65 },
-    "4.05MM": { rate: 54000, weight: 36.5 },
-    "4.30MM": { rate: 54000, weight: 37.36 },
-    "4.87MM": { rate: 54000, weight: 42.5 }
-  },
-  "50X25": {
-    "1.60MM": { rate: 55000, weight: 11.5 },
-    "2.00MM": { rate: 54500, weight: 14.5 },
-    "2.50MM": { rate: 54000, weight: 17.5 },
-    "2.60MM": { rate: 54000, weight: 18 },
-    "2.90MM": { rate: 54000, weight: 19.5 },
-    "3.25MM": { rate: 54000, weight: 21.5 },
-    "4.30MM": { rate: 54000, weight: 28.5 }
+    "25X25": {
+        "1.60MM": { rate: 55000, weight: 7.15 },
+        "1.84MM": { rate: 55000, weight: 8.16 },
+        "2.00MM": { rate: 54500, weight: 9 },
+        "2.35MM": { rate: 54000, weight: 10.25 },
+        "2.50MM": { rate: 54000, weight: 11 },
+        "2.70MM": { rate: 54000, weight: 12.5 },
+        "2.90MM": { rate: 54000, weight: 13 },
+        "3.25MM": { rate: 54000, weight: 14.12 }
+    },
+    "32X32": {
+        "1.60MM": { rate: 55000, weight: 9.27 },
+        "1.84MM": { rate: 55000, weight: 11 },
+        "2.00MM": { rate: 54500, weight: 11.45 },
+        "2.50MM": { rate: 54000, weight: 14.6 },
+        "2.90MM": { rate: 54000, weight: 16.5 }
+    },
+    "38X38": {
+        "1.60MM": { rate: 54000, weight: 11.07 },
+        "1.84MM": { rate: 54000, weight: 12.67 },
+        "2.00MM": { rate: 54500, weight: 14 },
+        "2.50MM": { rate: 54000, weight: 17.5 },
+        "2.90MM": { rate: 54000, weight: 20.5 },
+        "3.25MM": { rate: 54000, weight: 21.9 },
+        "3.60MM": { rate: 54000, weight: 23.85 },
+        "4.05MM": { rate: 54000, weight: 27.3 }
+    },
+    "40X40": {
+        "1.60MM": { rate: 55000, weight: 12 },
+        "1.84MM": { rate: 55000, weight: 13.5 },
+        "2.00MM": { rate: 54500, weight: 15 },
+        "2.50MM": { rate: 54000, weight: 18.5 },
+        "2.90MM": { rate: 54000, weight: 21.5 },
+        "3.25MM": { rate: 54000, weight: 23.5 },
+        "3.60MM": { rate: 54000, weight: 25.5 },
+        "4.05MM": { rate: 54000, weight: 28.92 }
+    },
+    "50X50": {
+        "1.60MM": { rate: 55000, weight: 15.5 },
+        "1.84MM": { rate: 55000, weight: 16.8 },
+        "2.00MM": { rate: 54500, weight: 18.5 },
+        "2.50MM": { rate: 54000, weight: 22.37 },
+        "2.90MM": { rate: 54000, weight: 25.8 },
+        "3.25MM": { rate: 54000, weight: 28.74 },
+        "3.60MM": { rate: 54000, weight: 31.65 },
+        "4.05MM": { rate: 54000, weight: 36.5 },
+        "4.30MM": { rate: 54000, weight: 37.36 },
+        "4.87MM": { rate: 54000, weight: 42.5 }
+    },
+    "50X25": {
+        "1.60MM": { rate: 55000, weight: 11.5 },
+        "2.00MM": { rate: 54500, weight: 14.5 },
+        "2.50MM": { rate: 54000, weight: 17.5 },
+        "2.60MM": { rate: 54000, weight: 18 },
+        "2.90MM": { rate: 54000, weight: 19.5 },
+        "3.25MM": { rate: 54000, weight: 21.5 },
+        "4.30MM": { rate: 54000, weight: 28.5 }
+    },
+    "60X40": {
+        "1.60MM": { rate: 55000, weight: 15.5 },
+        "2MM": { rate: 54500, weight: 18.5 },
+        "2.5MM": { rate: 54000, weight: 23.5 },
+        "2.9MM": { rate: 54000, weight: 26.5 },
+        "3.25MM": { rate: 54000, weight: 29.31 },
+        "3.4MM": { rate: 54000, weight: 30.5 },
+        "3.60MM": { rate: 54000, weight: 32.5 },
+        "4.05MM": { rate: 54000, weight: 36.5 },
+        "4.30MM": { rate: 54000, weight: 38.93 },
+        "4.87MM": { rate: 54000, weight: 44 }
+    },
+    "60X60": {
+        "1.60MM": { rate: 55000, weight: 18.5 },
+        "2.00MM": { rate: 54500, weight: 22.5 },
+        "2.2MM": { rate: 54500, weight: 23.5 },
+        "2.5MM": { rate: 54000, weight: 27.5 },
+        "2.9MM": { rate: 54000, weight: 32.5 },
+        "3.25MM": { rate: 54000, weight: 35.5 },
+        "3.60MM": { rate: 54000, weight: 39.5 },
+        "4.05MM": { rate: 54000, weight: 44 },
+        "4.30MM": { rate: 54000, weight: 47 },
+        "4.87MM": { rate: 54000, weight: 53 }
+    },
+    "66X33": {
+        "2.00MM": { rate: 54500, weight: 18.5 },
+        "2.2MM": { rate: 54000, weight: 20.5 },
+        "2.5MM": { rate: 54000, weight: 23.5 },
+        "2.9MM": { rate: 54000, weight: 26.5 },
+        "3.25MM": { rate: 54000, weight: 29.31 },
+        "3.60MM": { rate: 54000, weight: 32.5 },
+        "4.05MM": { rate: 54000, weight: 36.5 },
+        "4.87MM": { rate: 54000, weight: 44 }
+    },
+    "75X25": {
+        "2.5MM": { rate: 54000, weight: 23.5 },
+        "2.9MM": { rate: 54000, weight: 26.5 }
+    },
+    "80X40": {
+        "1.60MM": { rate: 55000, weight: 18.5 },
+        "1.80MM": { rate: 55000, weight: 20.29 },
+        "2.00MM": { rate: 54500, weight: 22.5 },
+        "2.2MM": { rate: 54000, weight: 24.5 },
+        "2.5MM": { rate: 54000, weight: 27.5 },
+        "2.9MM": { rate: 54000, weight: 32.5 },
+        "3.1MM": { rate: 54000, weight: 34.5 },
+        "3.25MM": { rate: 54000, weight: 36 },
+        "3.4MM": { rate: 54000, weight: 37.5 },
+        "3.5MM": { rate: 54000, weight: 38.5 },
+        "3.60MM": { rate: 54000, weight: 39.5 },
+        "4.05MM": { rate: 54000, weight: 44.5 },
+        "4.30MM": { rate: 54000, weight: 45.93 },
+        "4.87MM": { rate: 54000, weight: 52.5 }
+    },
+    "96X48": {
+        "1.60MM": { rate: 55000, weight: 22 },
+        "1.80MM": { rate: 55000, weight: 25 },
+        "2.00MM": { rate: 54500, weight: 27.5 },
+        "2.2MM": { rate: 54500, weight: 29.5 },
+        "2.3MM": { rate: 54500, weight: 30.5 },
+        "2.5MM": { rate: 54000, weight: 33.5 },
+        "2.9MM": { rate: 54000, weight: 38.5 },
+        "3.25MM": { rate: 54000, weight: 43.5 },
+        "3.60MM": { rate: 54000, weight: 47.5 },
+        "4.05MM": { rate: 54000, weight: 54 },
+        "4.30MM": { rate: 54000, weight: 56.5 },
+        "4.87MM": { rate: 54000, weight: 63.5 },
+        "5.4MM": { rate: 54000, weight: 69.5 },
+        "5.8MM": { rate: 54000, weight: 74.5 }
+    },
+    "72X72": {
+        "1.60MM": { rate: 55000, weight: 21.52 },
+        "1.80MM": { rate: 55000, weight: 24.5 },
+        "2.00MM": { rate: 54500, weight: 27.5 },
+        "2.2MM": { rate: 54500, weight: 29.5 },
+        "2.3MM": { rate: 54500, weight: 30 },
+        "2.5MM": { rate: 54000, weight: 33.5 },
+        "2.9MM": { rate: 54000, weight: 38.5 },
+        "3.25MM": { rate: 54000, weight: 43.5 },
+        "3.60MM": { rate: 54000, weight: 47.5 },
+        "4.05MM": { rate: 54000, weight: 53.5 },
+        "4.30MM": { rate: 54000, weight: 55.16 },
+        "4.87MM": { rate: 54000, weight: 63.5 },
+        "5.8MM": { rate: 54000, weight: 73.68 }
+    },
+    "80X80": {
+        "2.9MM": { "rate": 54000, "weight": 42.45 },
+        "3.60MM": { "rate": 54000, "weight": 52.31 },
+        "4.05MM": { "rate": 54000, "weight": 58.57 },
+        "4.87MM": { "rate": 54000, "weight": 69.84 },
+        "5.8MM": { "rate": 54000, "weight": 82.38 }
+    },
+    "100X100": {
+        "2.9MM": { "rate": 54000, "weight": 53.25 },
+        "3.60MM": { "rate": 54000, "weight": 66 },
+        "4.05MM": { "rate": 54000, "weight": 74 },
+        "4.3MM": { "rate": 54000, "weight": 78 },
+        "4.87MM": { "rate": 54000, "weight": 88.55 },
+        "5.8MM": { "rate": 54000, "weight": 104 }
+    },
+    "91X91": {
+        "2MM": { "rate": 54500, "weight": 34.5 },
+        "2.5MM": { "rate": 54000, "weight": 42.5 },
+        "2.9MM": { "rate": 54000, "weight": 49.5 },
+        "3.25MM": { "rate": 54000, "weight": 54.45 },
+        "3.60MM": { "rate": 54000, "weight": 60.5 },
+        "3.80MM": { "rate": 54000, "weight": 63.5 },
+        "4.05MM": { "rate": 54000, "weight": 67.5 },
+        "4.3MM": { "rate": 54000, "weight": 70.97 },
+        "4.87MM": { "rate": 54000, "weight": 80.02 }
+    },
+    "122X61": {
+        "2MM": { "rate": 54500, "weight": 34 },
+        "2.5MM": { "rate": 54000, "weight": 42.16 },
+        "2.9MM": { "rate": 54000, "weight": 49 },
+        "3.25MM": { "rate": 54000, "weight": 54.45 },
+        "3.60MM": { "rate": 54000, "weight": 60 },
+        "4.05MM": { "rate": 54000, "weight": 66.54 },
+        "4.3MM": { "rate": 54000, "weight": 70.97 },
+        "4.87MM": { "rate": 54000, "weight": 80.02 },
+        "5.4MM": { "rate": 54000, "weight": 88.76 }
+    },
+    "113X113": {
+        "2.9MM": { "rate": 54000, "weight": 61 },
+        "3.60MM": { "rate": 54000, "weight": 75 },
+        "4.05MM": { "rate": 54000, "weight": 84 },
+        "4.87MM": { "rate": 54000, "weight": 100.6 },
+        "5.4MM": { "rate": 54000, "weight": 111.13 }
+    },
+    "132X132": {
+        "2.9MM": { "rate": 54000, "weight": 71 },
+        "4.05MM": { "rate": 54000, "weight": 98.27 },
+        "4.87MM": { "rate": 54000, "weight": 117.62 },
+        "5.4MM": { "rate": 54000, "weight": 132.17 },
+        "5.8MM": { "rate": 54000, "weight": 139.19 }
+    },
+    "145X82": {
+        "2.9MM": { "rate": 54000, "weight": 60.76 },
+        "3.25MM": { "rate": 54000, "weight": 68 },
+        "4.05MM": { "rate": 54000, "weight": 84.16 },
+        "4.87MM": { "rate": 54000, "weight": 101 },
+        "5.4MM": { "rate": 54000, "weight": 111.13 },
+        "5.8MM": { "rate": 54000, "weight": 118 }
+    },
+    "172X92": {
+        "2.9MM": { "rate": 54000, "weight": 72 },
+        "4.5MM": { "rate": 54000, "weight": 110 },
+        "4.87MM": { "rate": 54000, "weight": 117.62 },
+        "5.4MM": { "rate": 54000, "weight": 132.17 },
+        "5.8MM": { "rate": 54000, "weight": 140 }
+    },
+    "150X150": {
+        "2.9MM": { "rate": 54000, "weight": 81 },
+        "3.25MM": { "rate": 54000, "weight": 90 },
+        "3.6MM": { "rate": 54000, "weight": 100 },
+        "4.05MM": { "rate": 54000, "weight": 112 },
+        "4.87MM": { "rate": 54000, "weight": 134.1 },
+        "5.8MM": { "rate": 54000, "weight": 159.7 }
+    },
+    "200X100": { // This is the last entry, so no trailing comma
+        "2.9MM": { "rate": 54000, "weight": 81 },
+        "3.1MM": { "rate": 54000, "weight": 87 },
+        "3.25MM": { "rate": 54000, "weight": 91 },
+        "3.6MM": { "rate": 54000, "weight": 101 },
+        "4.05MM": { "rate": 54000, "weight": 113 },
+        "4.3MM": { "rate": 54000, "weight": 120 },
+        "4.5MM": { "rate": 54000, "weight": 125 },
+        "4.87MM": { "rate": 54000, "weight": 135 },
+        "5.8MM": { "rate": 54000, "weight": 159.7 }
+    }
+}; // This is the single, final closing brace for the entire 'data' object.
   
-};
-  "60X40": {
-    "1.60MM": { rate: 55000, weight: 15.5 },
-    "2MM": { rate: 54500, weight: 18.5 },
-    "2.5MM": { rate: 54000, weight: 23.5 },
-    "2.9MM": { rate: 54000, weight: 26.5 },
-    "3.25MM": { rate: 54000, weight: 29.31 },
-    "3.4MM": { rate: 54000, weight: 30.5 },
-    "3.60MM": { rate: 54000, weight: 32.5 },
-    "4.05MM": { rate: 54000, weight: 36.5 },
-    "4.30MM": { rate: 54000, weight: 38.93 },
-    "4.87MM": { rate: 54000, weight: 44 }
-  
-};
-"60X60": {
-    "1.60MM": { rate: 55000, weight: 18.5 },
-    "2.00MM": { rate: 54500, weight: 22.5 },
-    "2.2MM": { rate: 54500, weight: 23.5 },
-    "2.5MM": { rate: 54000, weight: 27.5 },
-    "2.9MM": { rate: 54000, weight: 32.5 },
-    "3.25MM": { rate: 54000, weight: 35.5 },
-    "3.60MM": { rate: 54000, weight: 39.5 },
-    "4.05MM": { rate: 54000, weight: 44 },
-    "4.30MM": { rate: 54000, weight: 47 },
-    "4.87MM": { rate: 54000, weight: 53 }
-  
-};
-  "66X33": {
-    "2.00MM": { rate: 54500, weight: 18.5 },
-    "2.2MM": { rate: 54000, weight: 20.5 },
-    "2.5MM": { rate: 54000, weight: 23.5 },
-    "2.9MM": { rate: 54000, weight: 26.5 },
-    "3.25MM": { rate: 54000, weight: 29.31 },
-    "3.60MM": { rate: 54000, weight: 32.5 },
-    "4.05MM": { rate: 54000, weight: 36.5 },
-    "4.87MM": { rate: 54000, weight: 44 }
-  
-};
- "75X25": {
-    "2.5MM": { rate: 54000, weight: 23.5 },
-    "2.9MM": { rate: 54000, weight: 26.5 }
-  },
- "80X40": {
-    "1.60MM": { rate: 55000, weight: 18.5 },
-    "1.80MM": { rate: 55000, weight: 20.29 },
-    "2.00MM": { rate: 54500, weight: 22.5 },
-    "2.2MM": { rate: 54000, weight: 24.5 },
-    "2.5MM": { rate: 54000, weight: 27.5 },
-    "2.9MM": { rate: 54000, weight: 32.5 },
-    "3.1MM": { rate: 54000, weight: 34.5 },
-    "3.25MM": { rate: 54000, weight: 36 },
-    "3.4MM": { rate: 54000, weight: 37.5 },
-    "3.5MM": { rate: 54000, weight: 38.5 },
-    "3.60MM": { rate: 54000, weight: 39.5 },
-    "4.05MM": { rate: 54000, weight: 44.5 },
-    "4.30MM": { rate: 54000, weight: 45.93 },
-    "4.87MM": { rate: 54000, weight: 52.5 }
-  },
-  "96X48": {
-    "1.60MM": { rate: 55000, weight: 22 },
-    "1.80MM": { rate: 55000, weight: 25 },
-    "2.00MM": { rate: 54500, weight: 27.5 },
-    "2.2MM": { rate: 54500, weight: 29.5 },
-    "2.3MM": { rate: 54500, weight: 30.5 },
-    "2.5MM": { rate: 54000, weight: 33.5 },
-    "2.9MM": { rate: 54000, weight: 38.5 },
-    "3.25MM": { rate: 54000, weight: 43.5 },
-    "3.60MM": { rate: 54000, weight: 47.5 },
-    "4.05MM": { rate: 54000, weight: 54 },
-    "4.30MM": { rate: 54000, weight: 56.5 },
-    "4.87MM": { rate: 54000, weight: 63.5 },
-    "5.4MM": { rate: 54000, weight: 69.5 },
-    "5.8MM": { rate: 54000, weight: 74.5 }
-  
-};
-  "72X72": {
-    "1.60MM": { rate: 55000, weight: 21.52 },
-    "1.80MM": { rate: 55000, weight: 24.5 },
-    "2.00MM": { rate: 54500, weight: 27.5 },
-    "2.2MM": { rate: 54500, weight: 29.5 },
-    "2.3MM": { rate: 54500, weight: 30 },
-    "2.5MM": { rate: 54000, weight: 33.5 },
-    "2.9MM": { rate: 54000, weight: 38.5 },
-    "3.25MM": { rate: 54000, weight: 43.5 },
-    "3.60MM": { rate: 54000, weight: 47.5 },
-    "4.05MM": { rate: 54000, weight: 53.5 },
-    "4.30MM": { rate: 54000, weight: 55.16 },
-    "4.87MM": { rate: 54000, weight: 63.5 },
-    "5.8MM": { rate: 54000, weight: 73.68 }
-  
-};
-   "80X80": {
-    "2.9MM": { "rate": 54000, "weight": 42.45 },
-    "3.60MM": { "rate": 54000, "weight": 52.31 },
-    "4.05MM": { "rate": 54000, "weight": 58.57 },
-    "4.87MM": { "rate": 54000, "weight": 69.84 },
-    "5.8MM": { "rate": 54000, "weight": 82.38 }
-  
-};
-  "100X100": {
-    "2.9MM": { "rate": 54000, "weight": 53.25 },
-    "3.60MM": { "rate": 54000, "weight": 66 },
-    "4.05MM": { "rate": 54000, "weight": 74 },
-    "4.3MM": { "rate": 54000, "weight": 78 },
-    "4.87MM": { "rate": 54000, "weight": 88.55 },
-    "5.8MM": { "rate": 54000, "weight": 104 }
-  },
-  "91X91": {
-    "2MM": { "rate": 54500, "weight": 34.5 },
-    "2.5MM": { "rate": 54000, "weight": 42.5 },
-    "2.9MM": { "rate": 54000, "weight": 49.5 },
-    "3.25MM": { "rate": 54000, "weight": 54.45 },
-    "3.60MM": { "rate": 54000, "weight": 60.5 },
-    "3.80MM": { "rate": 54000, "weight": 63.5 },
-    "4.05MM": { "rate": 54000, "weight": 67.5 },
-    "4.3MM": { "rate": 54000, "weight": 70.97 },
-    "4.87MM": { "rate": 54000, "weight": 80.02 }
-  
-};
-  "122X61": {
-    "2MM": { "rate": 54500, "weight": 34 },
-    "2.5MM": { "rate": 54000, "weight": 42.16 },
-    "2.9MM": { "rate": 54000, "weight": 49 },
-    "3.25MM": { "rate": 54000, "weight": 54.45 },
-    "3.60MM": { "rate": 54000, "weight": 60 },
-    "4.05MM": { "rate": 54000, "weight": 66.54 },
-    "4.3MM": { "rate": 54000, "weight": 70.97 },
-    "4.87MM": { "rate": 54000, "weight": 80.02 },
-    "5.4MM": { "rate": 54000, "weight": 88.76 }
-    
-  },
-  "113X113": {
-    "2.9MM": { "rate": 54000, "weight": 61 },
-    "3.60MM": { "rate": 54000, "weight": 75 },
-    "4.05MM": { "rate": 54000, "weight": 84 },
-    "4.87MM": { "rate": 54000, "weight": 100.6 },
-    "5.4MM": { "rate": 54000, "weight": 111.13 }
-    
-  },
-  "132X132": {
-    "2.9MM": { "rate": 54000, "weight": 71 },
-    "4.05MM": { "rate": 54000, "weight": 98.27 },
-    "4.87MM": { "rate": 54000, "weight": 117.62 },
-    "5.4MM": { "rate": 54000, "weight": 132.17 },
-    "5.8MM": { "rate": 54000, "weight": 139.19 }
-  
-};
-   "145X82": {
-    "2.9MM": { "rate": 54000, "weight": 60.76 },
-    "3.25MM": { "rate": 54000, "weight": 68 },
-    "4.05MM": { "rate": 54000, "weight": 84.16 },
-    "4.87MM": { "rate": 54000, "weight": 101 },
-    "5.4MM": { "rate": 54000, "weight": 111.13 },
-    "5.8MM": { "rate": 54000, "weight": 118 }
-     
-  },
-  "172X92": {
-    "2.9MM": { "rate": 54000, "weight": 72 },
-    "4.5MM": { "rate": 54000, "weight": 110 },
-    "4.87MM": { "rate": 54000, "weight": 117.62 },
-    "5.4MM": { "rate": 54000, "weight": 132.17 },
-    "5.8MM": { "rate": 54000, "weight": 140 }
-     },
-  "150X150": {
-    "2.9MM": { "rate": 54000, "weight": 81 },
-    "3.25MM": { "rate": 54000, "weight": 90 },
-    "3.6MM": { "rate": 54000, "weight": 100 },
-    "4.05MM": { "rate": 54000, "weight": 112 },
-    "4.87MM": { "rate": 54000, "weight": 134.1 },
-    "5.8MM": { "rate": 54000, "weight": 159.7 }
-      },
-  "200X100": {
-    "2.9MM": { "rate": 54000, "weight": 81 },
-    "3.1MM": { "rate": 54000, "weight": 87 },
-    "3.25MM": { "rate": 54000, "weight": 91 },
-    "3.6MM": { "rate": 54000, "weight": 101 },
-    "4.05MM": { "rate": 54000, "weight": 113 },
-    "4.3MM": { "rate": 54000, "weight": 120 },
-    "4.5MM": { "rate": 54000, "weight": 125 },
-    "4.87MM": { "rate": 54000, "weight": 135 },
-    "5.8MM": { "rate": 54000, "weight": 159.7 }
-  };
-
-
 const sizeDropdown = document.getElementById("size");
 const thicknessDropdown = document.getElementById("thickness");
 const quoteTable = document.querySelector("#quoteTable tbody");
