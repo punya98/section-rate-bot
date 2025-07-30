@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Jindal Hollow Section Rate Calculator</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jindal Hollow Section Quotation Builder</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -26,63 +26,75 @@
       border: 1px solid #ccc;
       border-radius: 4px;
     }
-    .result {
+    .result, .quotation {
       background: #fff;
       padding: 15px;
       border-radius: 5px;
       margin-top: 20px;
       box-shadow: 0 0 5px rgba(0,0,0,0.1);
     }
-    .whatsapp {
-      margin-top: 20px;
-      display: inline-block;
-      background-color: #25D366;
-      color: white;
+    .btn {
+      margin-top: 15px;
       padding: 10px 20px;
-      text-decoration: none;
+      background-color: #24364e;
+      color: white;
+      border: none;
       border-radius: 5px;
+      cursor: pointer;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 15px;
+    }
+    th, td {
+      border: 1px solid #ccc;
+      padding: 8px;
+      text-align: center;
+    }
+    th {
+      background: #24364e;
+      color: white;
     }
   </style>
 </head>
 <body>
 
-<h1>Jindal Hollow Section Rate Calculator</h1>
+<h1>Jindal Hollow Section Rate & Quotation Calculator</h1>
 
 <label for="size">Select Size:</label>
-<select id="size" onchange="populateThickness()">
-  <option value="">-- Select Size --</option>
-  <option value="25X25">25X25</option>
-  <option value="32X32">32X32</option>
-  <option value="38X38">38X38</option>
-  <option value="50X25">50X25</option>
-  <option value="50X50">50X50</option>
-  <option value="75X25">75X25</option>
-  <option value="75X50">75X50</option>
-  <option value="100X50">100X50</option>
-  <option value="100X100">100X100</option>
-  <option value="120X60">120X60</option>
-  <option value="150X50">150X50</option>
-  <option value="150X75">150X75</option>
-  <option value="160X80">160X80</option>
-  <option value="200X100">200X100</option>
-  <option value="220X220">220X220</option>
-</select>
+<select id="size" onchange="populateThickness()"></select>
 
 <label for="thickness">Select Thickness:</label>
-<select id="thickness" onchange="showRate()">
-  <option value="">-- Select Thickness --</option>
-</select>
+<select id="thickness"></select>
 
 <label for="quantity">Number of Pipes:</label>
-<input type="number" id="quantity" value="1" onchange="calculate()" />
+<input type="number" id="quantity" value="1" min="1" />
 
-<div class="result">
-  <p><strong>Rate per Tonne:</strong> ₹<span id="rate">-</span></p>
-  <p><strong>Approx Weight:</strong> <span id="weight">-</span> kg</p>
-  <p><strong>Total Cost:</strong> ₹<span id="total">-</span></p>
+<button class="btn" onclick="addToQuotation()">Add to Quotation</button>
+
+<div class="quotation" id="quotationSection">
+  <h2>Quotation Summary</h2>
+  <table id="quoteTable">
+    <thead>
+      <tr>
+        <th>Size</th>
+        <th>Thickness</th>
+        <th>Rate/Tonne (₹)</th>
+        <th>Weight (kg)</th>
+        <th>Qty</th>
+        <th>Total Amount (₹)</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+    <tfoot>
+      <tr>
+        <td colspan="5"><strong>Grand Total</strong></td>
+        <td id="grandTotal">₹0</td>
+      </tr>
+    </tfoot>
+  </table>
 </div>
-
-<a href="#" class="whatsapp" id="waLink" target="_blank">Send via WhatsApp</a>
 
 <script>
 const data = {
@@ -140,41 +152,50 @@ const data = {
   }
 };
 
+const sizeDropdown = document.getElementById("size");
+const thicknessDropdown = document.getElementById("thickness");
+const quoteTable = document.querySelector("#quoteTable tbody");
+let grandTotal = 0;
+
+window.onload = function() {
+  for (let size in data) {
+    sizeDropdown.innerHTML += `<option value="${size}">${size}</option>`;
+  }
+};
+
 function populateThickness() {
-  const size = document.getElementById("size").value;
-  const thicknessEl = document.getElementById("thickness");
-  thicknessEl.innerHTML = '<option value="">-- Select Thickness --</option>';
-  if (data[size]) {
-    for (let thickness in data[size]) {
-      thicknessEl.innerHTML += `<option value="${thickness}">${thickness}</option>`;
+  thicknessDropdown.innerHTML = '<option value="">-- Select Thickness --</option>';
+  const selectedSize = sizeDropdown.value;
+  if (data[selectedSize]) {
+    for (let thk in data[selectedSize]) {
+      thicknessDropdown.innerHTML += `<option value="${thk}">${thk}</option>`;
     }
   }
-  document.getElementById("rate").innerText = '-';
-  document.getElementById("weight").innerText = '-';
-  document.getElementById("total").innerText = '-';
 }
 
-function showRate() {
-  calculate();
-}
+function addToQuotation() {
+  const size = sizeDropdown.value;
+  const thickness = thicknessDropdown.value;
+  const qty = parseInt(document.getElementById("quantity").value);
 
-function calculate() {
-  const size = document.getElementById("size").value;
-  const thickness = document.getElementById("thickness").value;
-  const qty = parseInt(document.getElementById("quantity").value) || 0;
+  if (!size || !thickness || !qty || qty <= 0) return alert("Please select valid options and quantity");
 
-  if (data[size] && data[size][thickness]) {
-    const rate = data[size][thickness].rate;
-    const weight = data[size][thickness].weight * qty;
-    const total = (weight * rate) / 1000;
+  const item = data[size][thickness];
+  const weight = item.weight * qty;
+  const total = (weight * item.rate) / 1000;
+  grandTotal += total;
 
-    document.getElementById("rate").innerText = rate.toLocaleString('en-IN');
-    document.getElementById("weight").innerText = weight.toFixed(2);
-    document.getElementById("total").innerText = total.toLocaleString('en-IN', { maximumFractionDigits: 2 });
-
-    const waText = `Hi, I'm looking for ${qty} pipe(s) of ${size} ${thickness}.\nTotal Weight: ${weight.toFixed(2)} kg\nTotal Amount: ₹${total.toFixed(2)}`;
-    document.getElementById("waLink").href = `https://wa.me/919999889008?text=${encodeURIComponent(waText)}`;
-  }
+  quoteTable.innerHTML += `
+    <tr>
+      <td>${size}</td>
+      <td>${thickness}</td>
+      <td>${item.rate}</td>
+      <td>${weight.toFixed(2)}</td>
+      <td>${qty}</td>
+      <td>₹${total.toLocaleString('en-IN', { maximumFractionDigits: 2 })}</td>
+    </tr>
+  `;
+  document.getElementById("grandTotal").innerText = `₹${grandTotal.toLocaleString('en-IN', { maximumFractionDigits: 2 })}`;
 }
 </script>
 
