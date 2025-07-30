@@ -107,6 +107,7 @@ const data = {
     "2.70MM": { rate: 54000, weight: 12.5 },
     "2.90MM": { rate: 54000, weight: 13 },
     "3.25MM": { rate: 54000, weight: 14.12 }
+   
   },
   "32X32": {
     "1.60MM": { rate: 55000, weight: 9.27 },
@@ -352,7 +353,10 @@ window.onload = function() {
   for (let size in data) {
     sizeDropdown.innerHTML += `<option value="${size}">${size}</option>`;
   }
+  sizeDropdown.selectedIndex = 0;        // ✅ Automatically select the first size
+  populateThickness();                   // ✅ Automatically load thickness options
 };
+
 
 function populateThickness() {
   thicknessDropdown.innerHTML = '<option value="">-- Select Thickness --</option>';
