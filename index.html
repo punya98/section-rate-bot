@@ -11,6 +11,14 @@
       padding: 20px;
       color: #333;
     }
+     header {
+      background: #24364e;
+      color: white;
+      padding: 10px;
+      text-align: center;
+      font-size: 16px;
+      font-weight: bold;
+    }
     h1 {
       color: #24364e;
     }
@@ -56,9 +64,17 @@
       background: #24364e;
       color: white;
     }
+    .button-group {
+      margin-top: 20px;
+      text-align: center;
+    }
   </style>
 </head>
 <body>
+  <header>
+  Vijay Sales Corporation | sales@vijaysalescorp.com | 9999889008
+</header>
+
 
 <h1>Jindal Hollow Section Rate & Quotation Calculator</h1>
 
@@ -373,6 +389,26 @@ function addToQuotation() {
   `;
   document.getElementById("grandTotal").innerText = `₹${grandTotal.toLocaleString('en-IN', { maximumFractionDigits: 2 })}`;
 }
+  function calculate() {
+  alert("Grand Total: " + document.getElementById("grandTotal").innerText);
+}
+
+function downloadPDF() {
+  window.print();
+}
+
+function sendWhatsApp() {
+  let message = "Quotation from Vijay Sales Corporation:\n\n";
+  document.querySelectorAll("#quoteTable tbody tr").forEach(row => {
+    const cols = row.querySelectorAll("td");
+    message += `Size: ${cols[0].innerText}, Thickness: ${cols[1].innerText}, Rate/Tonne: ₹${cols[2].innerText}, Weight: ${cols[3].innerText}kg, Qty: ${cols[4].innerText}, Amount: ${cols[5].innerText}\n`;
+  });
+  message += `\nGrand Total: ${document.getElementById("grandTotal").innerText}`;
+  
+  const url = `https://wa.me/919999889008?text=${encodeURIComponent(message)}`;
+  window.open(url, "_blank");
+}
+  
 </script>
 
 </body>
