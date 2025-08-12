@@ -69,6 +69,8 @@
       text-align: center;
     }
   </style>
+   <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jspdf-autotable@3.5.25/dist/jspdf.plugin.autotable.min.js"></script>
 </head>
 <body>
   <header>
@@ -398,22 +400,54 @@ function addToQuotation() {
   alert("Grand Total: " + document.getElementById("grandTotal").innerText);
 }
 
-function downloadPDF() {
-  window.print();
+function generatePDF() {
+  calculateTotals();
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF();
+
+  doc.setFontSize(14);
+  doc.text('Jindal Hollow Section Quotation', 14, 16);
+  doc.setFontSize(11);
+  doc.text('Vijay Sales Corporation | sales@vijaysalescorp.com | 9999889008', 14, 24);
+
+  // Build table data from current DOM rows
+  const rows = Array.from(document.querySelectorAll('#quoteTable tbody tr')).map(tr => {
+    const cells = tr.querySelectorAll('td');
+    return [
+      cells[0].innerText, // Size
+      cells[1].innerText, // Thickness
+      cells[2].innerText, // Rate/Tonne
+      cells[3].innerText, // Weight
+      cells[4].innerText, // Qty
+      cells[5].innerText  // Amount
+    ];
+  });
+
+  doc.autoTable({
+    startY: 30,
+    head: [['Size', 'Thickness', 'Rate/Tonne (₹)', 'Weight (kg)', 'Qty', 'Amount (₹)']],
+    body: rows.length ? rows : [['-', '-', '-', '-', '-', '-']]
+  });
+
+  const y = doc.lastAutoTable.finalY + 8;
+  doc.setFontSize(12);
+  doc.text(`Grand Total: ₹${grandTotal.toLocaleString('en-IN', { maximumFractionDigits: 2 })}`, 14, y);
+
+  doc.save('Hollow-Section-Quotation.pdf');
 }
 
 function sendWhatsApp() {
-  let message = "Quotation from Vijay Sales Corporation:\n\n";
-  document.querySelectorAll("#quoteTable tbody tr").forEach(row => {
-    const cols = row.querySelectorAll("td");
-    message += `Size: ${cols[0].innerText}, Thickness: ${cols[1].innerText}, Rate/Tonne: ₹${cols[2].innerText}, Weight: ${cols[3].innerText}kg, Qty: ${cols[4].innerText}, Amount: ${cols[5].innerText}\n`;
+  calculateTotals();
+  let msg = 'Quotation from Vijay Sales Corporation\\n\\n';
+  document.querySelectorAll('#quoteTable tbody tr').forEach((tr) => {
+    const [size, thk, rate, weight, qty, amount] = Array.from(tr.querySelectorAll('td')).map(td => td.innerText);
+    msg += `• ${size} | ${thk} | Qty: ${qty} | Amount: ${amount}\\n`;
   });
-  message += `\nGrand Total: ${document.getElementById("grandTotal").innerText}`;
-  
-  const url = `https://wa.me/919999889008?text=${encodeURIComponent(message)}`;
-  window.open(url, "_blank");
+  msg += `\\nGrand Total: ₹${grandTotal.toLocaleString('en-IN', { maximumFractionDigits: 2 })}`;
+
+  const url = `https://wa.me/919999889008?text=${encodeURIComponent(msg)}`;
+  window.open(url, '_blank');
 }
-  
 </script>
 
 </body>
