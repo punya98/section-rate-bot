@@ -398,8 +398,15 @@ function addToQuotation() {
   `;
   document.getElementById("grandTotal").innerText = `₹${grandTotal.toLocaleString('en-IN', { maximumFractionDigits: 2 })}`;
 }
-  function calculate() {
-  alert("Grand Total: " + document.getElementById("grandTotal").innerText);
+  function calculateTotals() {
+  let sum = 0;
+  document.querySelectorAll("#quoteTable tbody tr").forEach(row => {
+    const amt = row.cells[5].innerText.replace(/[₹,]/g, '');
+    sum += parseFloat(amt) || 0;
+  });
+  grandTotal = sum;
+  document.getElementById("grandTotal").innerText =
+    `₹${grandTotal.toLocaleString('en-IN', { maximumFractionDigits: 2 })}`;
 }
 
 function generatePDF() {
@@ -440,12 +447,10 @@ function generatePDF() {
 
 function sendWhatsApp() {
   calculateTotals();
-  let msg = 'Quotation from Vijay Sales Corporation\\n\\n';
-  document.querySelectorAll('#quoteTable tbody tr').forEach((tr) => {
-    const [size, thk, rate, weight, qty, amount] = Array.from(tr.querySelectorAll('td')).map(td => td.innerText);
-    msg += `• ${size} | ${thk} | Qty: ${qty} | Amount: ${amount}\\n`;
-  });
-  msg += `\\nGrand Total: ₹${grandTotal.toLocaleString('en-IN', { maximumFractionDigits: 2 })}`;
+  let msg = 'Quotation from Vijay Sales Corporation\n\n';
+msg += `• ${size} | ${thk} | Qty: ${qty} | Amount: ${amount}\n`;
+msg += `\nGrand Total: ₹${grandTotal.toLocaleString('en-IN', { maximumFractionDigits: 2 })}`;
+
 
   const url = `https://wa.me/919999889008?text=${encodeURIComponent(msg)}`;
   window.open(url, '_blank');
