@@ -70,49 +70,67 @@
     }
    /* Mobile two-column grid layout */
     @media (max-width: 768px) {
-      #quoteTable,
-      #quoteTable thead,
-      #quoteTable tbody,
-      #quoteTable th,
-      #quoteTable td,
-      #quoteTable tr {
-        display: block;
-        width: 100%;
-      }
+  #quoteTable,
+  #quoteTable thead,
+  #quoteTable tbody,
+  #quoteTable th,
+  #quoteTable td,
+  #quoteTable tr {
+    display: block;
+    width: 100%;
+  }
 
-      #quoteTable thead {
-        display: none;
-      }
+  #quoteTable thead {
+    display: none; /* hide table header */
+  }
 
-      #quoteTable tr {
-        margin-bottom: 15px;
-        border: 1px solid #ddd;
-        border-radius: 6px;
-        padding: 10px;
-        background: #fff;
-      }
+  #quoteTable tr {
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 10px;
+    background: #fff;
+    position: relative;
+  }
 
-      #quoteTable td {
-        display: inline-block;
-        width: 48%;
-        box-sizing: border-box;
-        text-align: left;
-        padding: 6px;
-        font-size: 14px;
-        border: none !important;
-      }
+  #quoteTable td {
+    display: inline-block;
+    width: 48%; /* 2-column grid */
+    margin: 1% 1%;
+    padding: 8px;
+    font-size: 14px;
+    border: none !important;
+    vertical-align: top;
+    background: #f9f9f9;
+    border-radius: 4px;
+  }
 
-      #quoteTable td:nth-child(odd) {
-        font-weight: bold;
-        color: #24364e;
-      }
+  /* Add labels before each column */
+  #quoteTable td:nth-child(1)::before { content: "Size: "; font-weight: bold; }
+  #quoteTable td:nth-child(2)::before { content: "Thickness: "; font-weight: bold; }
+  #quoteTable td:nth-child(3)::before { content: "Rate/Tonne: "; font-weight: bold; }
+  #quoteTable td:nth-child(4)::before { content: "Weight: "; font-weight: bold; }
+  #quoteTable td:nth-child(5)::before { content: "Qty: "; font-weight: bold; }
+  #quoteTable td:nth-child(6)::before { content: "Amount: "; font-weight: bold; }
 
-      #quoteTable td:last-child {
-        width: 100%;
-        text-align: right;
-        margin-top: 8px;
-      }
-    }
+  /* Style for delete button */
+  #quoteTable td.delete-cell {
+    display: block;
+    width: 100%;
+    margin-top: 8px;
+    text-align: right;
+    background: none;
+  }
+  #quoteTable td.delete-cell button {
+    background: #ff4d4d;
+    border: none;
+    color: white;
+    font-size: 14px;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;FF
+  }
+}
     </style>
   <!-- jsPDF + AutoTable (required for real file download) -->
 <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
@@ -149,6 +167,8 @@
         <th>Weight (kg)</th>
         <th>Qty</th>
         <th>Total Amount (₹)</th>
+        <th>Action</th>
+        
       </tr>
     </thead>
     <tbody></tbody>
@@ -438,6 +458,7 @@ function addToQuotation() {
       <td>${weight.toFixed(2)}</td>
       <td>${qty}</td>
       <td>₹${total.toLocaleString('en-IN', { maximumFractionDigits: 2 })}</td>
+      <td class="delete-cell"><button onclick="this.closest('tr').remove(); calculateTotals()">× Delete</button></td>
     </tr>
   `;
   document.getElementById("grandTotal").innerText = `₹${grandTotal.toLocaleString('en-IN', { maximumFractionDigits: 2 })}`;
