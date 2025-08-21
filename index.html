@@ -466,7 +466,8 @@ function addToQuotation() {
       <td class="delete-cell"><button onclick="this.closest('tr').remove(); calculateTotals()">× Delete</button></td>
     </tr>
   `;
-  document.getElementById("grandTotal").innerText = `₹${grandTotal.toLocaleString('en-IN', { maximumFractionDigits: 2 })}`;
+  document.getElementById("grandTotal").innerText = `Grand Total: ₹${grandTotal.toLocaleString('en-IN', { maximumFractionDigits: 2 })}`;
+
 }
   function calculateTotals() {
   let sum = 0;
@@ -475,8 +476,8 @@ function addToQuotation() {
     const val = parseFloat(amtCell) || 0;
     sum += val;
   });
-  grandTotal = sum;
-  document.getElementById("grandTotal").innerText = `₹${grandTotal.toLocaleString('en-IN', { maximumFractionDigits: 2 })}`;
+  grandTotal = sum;document.getElementById("grandTotal").innerText = `Grand Total: ₹${grandTotal.toLocaleString('en-IN', { maximumFractionDigits: 2 })}`;
+
 
 }
 function generatePDF() {
