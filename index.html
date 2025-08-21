@@ -90,19 +90,17 @@
     border-radius: 6px;
     padding: 10px;
     background: #fff;
-    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Two-column grid */
+    gap: 8px;
   }
-
+      
   #quoteTable td {
-    display: inline-block;
-    width: 48%; /* 2-column grid */
-    margin: 1% 1%;
-    padding: 8px;
-    font-size: 14px;
     border: none !important;
-    vertical-align: top;
     background: #f9f9f9;
     border-radius: 4px;
+    padding: 6px;
+    font-size: 14px;
   }
 
   /* Add labels before each column */#quoteTable tbody td:nth-child(1)::before { content: "Size: "; font-weight: bold; }
@@ -115,13 +113,12 @@
 
 
   /* Style for delete button */
-  #quoteTable td.delete-cell {
-    display: block;
-    width: 100%;
-    margin-top: 8px;
+   #quoteTable td.delete-cell {
+    grid-column: span 2; /* Make delete button full row */
     text-align: right;
     background: none;
   }
+      
   #quoteTable td.delete-cell button {
     background: #ff4d4d;
     border: none;
@@ -132,8 +129,13 @@
     cursor: pointer;FF
   }
       /* Remove auto-labels for grand total row */
-  #quoteTable tfoot td::before {
-    content: "" !important;
+  #quoteTable tfoot td {
+    display: block;
+    grid-column: span 2;
+    text-align: right;
+    font-weight: bold;
+    background: #fff;
+    padding-top: 10px;
   }
 </style>
   <!-- jsPDF + AutoTable (required for real file download) -->
