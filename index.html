@@ -452,18 +452,15 @@ function addToQuotation() {
 
   const item = data[size][thickness];
   const weight = item.weight * qty;
-  const total = (weight * item.rate) / 1000;
-  grandTotal += total;
-
-  quoteTable.innerHTML += `
-    <tr>
-      <td>${size}</td>
-      <td>${thickness}</td>
-      <td>${item.rate}</td>
-      <td>${weight.toFixed(2)}</td>
-      <td>${qty}</td>
-      <td>₹${total.toLocaleString('en-IN', { maximumFractionDigits: 2 })}</td>
-      <td class="delete-cell"><button onclick="this.closest('tr').remove(); calculateTotals()">× Delete</button></td>
+  const total = (weight * item.rate) / 1000; const row = quoteTable.insertRow();
+  row.innerHTML = `
+    <td>${size}</td>
+    <td>${thickness}</td>
+    <td>${item.rate}</td>
+    <td>${weight.toFixed(2)}</td>
+    <td>${qty}</td>
+    <td>₹${total.toLocaleString('en-IN', { maximumFractionDigits: 2 })}</td>
+    <td class="delete-cell"><button onclick="this.closest('tr').remove(); calculateTotals()">× Delete</button></td>
     </tr>
   `;
   document.getElementById("grandTotal").innerText = `Grand Total: ₹${grandTotal.toLocaleString('en-IN', { maximumFractionDigits: 2 })}`;
