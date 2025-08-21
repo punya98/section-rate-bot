@@ -68,7 +68,52 @@
       margin-top: 20px;
       text-align: center;
     }
-  </style>
+   /* Mobile two-column grid layout */
+    @media (max-width: 768px) {
+      #quoteTable,
+      #quoteTable thead,
+      #quoteTable tbody,
+      #quoteTable th,
+      #quoteTable td,
+      #quoteTable tr {
+        display: block;
+        width: 100%;
+      }
+
+      #quoteTable thead {
+        display: none;
+      }
+
+      #quoteTable tr {
+        margin-bottom: 15px;
+        border: 1px solid #ddd;
+        border-radius: 6px;
+        padding: 10px;
+        background: #fff;
+      }
+
+      #quoteTable td {
+        display: inline-block;
+        width: 48%;
+        box-sizing: border-box;
+        text-align: left;
+        padding: 6px;
+        font-size: 14px;
+        border: none !important;
+      }
+
+      #quoteTable td:nth-child(odd) {
+        font-weight: bold;
+        color: #24364e;
+      }
+
+      #quoteTable td:last-child {
+        width: 100%;
+        text-align: right;
+        margin-top: 8px;
+      }
+    }
+    </style>
   <!-- jsPDF + AutoTable (required for real file download) -->
 <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/jspdf-autotable@3.5.25/dist/jspdf.plugin.autotable.min.js"></script>
