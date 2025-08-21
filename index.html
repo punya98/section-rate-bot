@@ -472,15 +472,17 @@ function addToQuotation() {
   function calculateTotals() {
   let sum = 0;
   document.querySelectorAll("#quoteTable tbody tr").forEach(row => {
-    const amtCell = row.cells[5].innerText.replace(/[₹,]/g, '');
-    const val = parseFloat(amtCell) || 0;
-    sum += val;
+    const amtCell = row.querySelector("td:nth-child(6)");
+    if (amtCell) {
+      const val = parseFloat(amtCell.innerText.replace(/[₹,]/g, '')) || 0;
+      sum += val;
+    }
   });
   grandTotal = sum;
-    document.getElementById("grandTotal").innerText = `Grand Total: ₹${grandTotal.toLocaleString('en-IN', { maximumFractionDigits: 2 })}`;
-
-
+  document.getElementById("grandTotal").innerText = 
+    `Grand Total: ₹${grandTotal.toLocaleString('en-IN', { maximumFractionDigits: 2 })}`;
 }
+
 function generatePDF() {
   calculateTotals();
   const { jsPDF } = window.jspdf;
