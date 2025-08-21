@@ -105,13 +105,14 @@
     border-radius: 4px;
   }
 
-  /* Add labels before each column */
-  #quoteTable td:nth-child(1)::before { content: "Size: "; font-weight: bold; }
-  #quoteTable td:nth-child(2)::before { content: "Thickness: "; font-weight: bold; }
-  #quoteTable td:nth-child(3)::before { content: "Rate/Tonne: "; font-weight: bold; }
-  #quoteTable td:nth-child(4)::before { content: "Weight: "; font-weight: bold; }
-  #quoteTable td:nth-child(5)::before { content: "Qty: "; font-weight: bold; }
-  #quoteTable td:nth-child(6)::before { content: "Amount: "; font-weight: bold; }
+  /* Add labels before each column */#quoteTable tbody td:nth-child(1)::before { content: "Size: "; font-weight: bold; }
+#quoteTable tbody td:nth-child(2)::before { content: "Thickness: "; font-weight: bold; }
+#quoteTable tbody td:nth-child(3)::before { content: "Rate/Tonne: "; font-weight: bold; }
+#quoteTable tbody td:nth-child(4)::before { content: "Weight: "; font-weight: bold; }
+#quoteTable tbody td:nth-child(5)::before { content: "Qty: "; font-weight: bold; }
+#quoteTable tbody td:nth-child(6)::before { content: "Amount: "; font-weight: bold; }
+#quoteTable tbody td:nth-child(7)::before { content: "Action: "; font-weight: bold; }
+
 
   /* Style for delete button */
   #quoteTable td.delete-cell {
